@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sf.mapper.JoinGroupInfoMapper">
+	<insert id="joinGroup"  parameterType="com.sf.entity.JoinGroupInfoVo">
+		INSERT INTO group_user_info(group_id,user_id, user_name,user_mobile, from_city, from_detail_address, total_pkgs, avg_weight)
+		values(
+			#{joinGroupInfo.groupId},
+			#{joinGroupInfo.userId},
+			#{joinGroupInfo.userName},
+			#{joinGroupInfo.userMobile},
+			#{joinGroupInfo.fromCity},
+			#{joinGroupInfo.fromDetailAddress},
+			#{joinGroupInfo.totalPkgs},
+			#{joinGroupInfo.avgWeith}
+		)
+	</insert>
+</mapper>
