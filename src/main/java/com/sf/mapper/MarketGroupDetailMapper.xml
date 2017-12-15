@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sf.mapper.MarketGroupDetailMapper">
+
+    <resultMap id="marketGroupDetailMapper" type="com.sf.entity.MarketGroupDetailVo">
+        <result column="groupId" property="groupId"/>
+        <result column="groupName" property="groupName"/>
+		
+		<result column="btm" property="groupStartDate"/>
+		<result column="etm" property="groupEndDate"/>
+		
+		<result column="status" property="status"/>
+		<result column="marketId" property="marketId"/>
+		<result column="marketName" property="marketName"/>
+		
+		<result column="min_pkgs" property="minPackages"/>
+		<result column="min_weight" property="minWeight"/>
+		<result column="max_weight" property="maxWeight"/>
+		<result column="base_price" property="basePrice"/>
+		
+		<result column="base_weight" property="baseWeight"/>
+		<result column="group_limit" property="groupLimit"/>
+		<collection property="userIdList" ofType="java.lang.String">
+			<result column="user_id" />
+		</collection>
+		
+    </resultMap>
+    <select id="getMarketGroupDetailByGroupId" resultMap="marketGroupDetailMapper">
+    	SELECT 
+			gr.id AS groupId,
+			gr.gname AS groupName,
+			gr.btm,
+			gr.etm,
+			gr.status,
+			pmb.m_id AS marketId,
+			pmb.m_name AS marketName,
+			pmb.min_pkgs,
+			pmb.min_weight,
+			pmb.max_weight,
+			pmb.base_price,
+			pmb.base_weight,
+			pmb.group_limit,
+			gu.user_id
+		FROM groupx gr
+		JOIN pro_market_base pmb ON gr.market_id = pmb.m_id
+		JOIN group_user gu ON gr.id = gu.group_id
+		WHERE gr.id = #{groupId}  
+    </select>
+</mapper>
