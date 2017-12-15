@@ -177,7 +177,10 @@ Page({
 
     //参团  
     wx.request({
-      url: "https://itsc.dforel.site//currency?key=我的appkey&from=CNY&to=" + code,
+      url: "https://s1.dforel.site//currency?key=我的appkey&from=CNY&to=" + code,
+      data: { name: this.data.name, phone: this.data.phone, groudId: this.data.groudId, 
+              mailNumber: this.data.mailNumber, areaInfo: this.data.areaInfo, 
+              detailAddress: this.data.detailAddress, weights: this.data.weights},
       success: function (res) {
         console.log(res)
         if(res.success){ 
