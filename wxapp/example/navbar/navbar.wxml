@@ -1,0 +1,26 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for="{{tabs}}" wx:key="*this">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <view class="weui-navbar__title">{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <view class="weui-tab__content button-sp-area" hidden="{{activeIndex != 0}}">
+                  <button class="weui-btn" type="primary" bindtap='addGroupBuy'>新增团购</button>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+                
+                   <button class="weui-btn" type="primary" bindtap='linkToIndex'>跳转到首页</button>
+                </view>
+                <view class="weui-tab__content button-sp-area"  hidden="{{activeIndex != 2}}">
+                  <button class="weui-btn" type="primary" plain="true" bindtap="linkTo">跳转到参考</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
