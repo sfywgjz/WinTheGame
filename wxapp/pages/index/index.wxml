@@ -11,7 +11,7 @@
   <view class="grounp-redcircle">
     <image class="banner-images" src="../images/red-circle.png"></image>
     <view class="price-up white-text">低至￥<text class="price-number">{{price}}</text></view>
-    <view class="price-down white-text">1.5kg</view>
+    <view class="price-down white-text">{{minWeight}}</view>
   </view>
   <view class="head-banner">
     <image class="banner-images" src="../images/banner.png"></image>

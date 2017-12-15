@@ -8,6 +8,7 @@ Page({
     weight: "1.5-5kg",
     minAmount: "20",
     price: "6",
+    minWeight:"1.6kg",
     progress: 85,
     lackText: 8,
     deadline: "12月18日",
@@ -39,11 +40,14 @@ Page({
       url: "https://s1.dforel.site/sf-application/getMarketGroupDetailByGroupId.html?groupId=" + this.data.groupId,
       success: function (res) {
         console.log(res)
+        if (res.statusCode!=200){
+          return;
+        }
         if (res.data) {
           that.setData({
             title: res.data.groupName,
-            weight: res.data.baseWeight +"KG--" + res.data.maxWeight+"KG",
-             
+            weight: res.data.baseWeight + "kg--" + res.data.maxWeight +"kg",
+            minWeight: res.data.baseWeight + "kg--",
             minAmount: res.data.minPackages,
             price: res.data.basePrice,
             progress: Math.ceil( res.data.userIdList.length*1.0 / res.data.groupLimit*100 ),

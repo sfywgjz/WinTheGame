@@ -146,8 +146,8 @@ Page({
   },
 
   baoming: function (e) {
-    this.showSuccessToast(true);   
-    return 
+    // this.showSuccessToast(true);   
+    // return 
     if (!this.data.addressValidate ){ 
       this.showToast('请选择所在地区',1500);   
       return
@@ -175,9 +175,9 @@ Page({
 
     var good = { name: this.data.goodname, price: this.data.goodprice}
 
-    //参团  
+    //参团  https://s1.dforel.site/sf-application/getMarketGroupDetailByGroupId.html?groupId=
     wx.request({
-      url: "https://s1.dforel.site//currency?key=我的appkey&from=CNY&to=" + code,
+      url: "https://s1.dforel.site/sf-application/getMarketGroupDetailByGroupId.html?groupId=" + this.data.groudId,
       data: { name: this.data.name, phone: this.data.phone, groudId: this.data.groudId, 
               mailNumber: this.data.mailNumber, areaInfo: this.data.areaInfo, 
               detailAddress: this.data.detailAddress, weights: this.data.weights},
