@@ -6,4 +6,8 @@ import com.sf.entity.MarketGroupDetailVo;
 
 public interface MarketGroupDetailMapper {
 	MarketGroupDetailVo getMarketGroupDetailByGroupId(@Param("groupId")long groupId);
+	
+	int updateEndingMarket();
+	
+	int newMarket();
 }
