@@ -45,6 +45,16 @@ public class MarketGroupDetailVo {
 	// 参加当前团的用户Id列表
 	private List<String> userIdList;
 	
+	private String descriptionOfGroup;
+	
+	public String getDescriptionOfGroup() {
+		return descriptionOfGroup;
+	}
+
+	public void setDescriptionOfGroup(String descriptionOfGroup) {
+		this.descriptionOfGroup = descriptionOfGroup;
+	}
+
 	public float getBasePrice() {
 		return basePrice;
 	}
