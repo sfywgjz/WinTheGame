@@ -26,6 +26,7 @@ public class MarketGroupDetailController {
 			marketGroupDetail.setCurrentUserNumber(marketGroupDetail.getUserIdList().size());
 			return JSONObject.toJSONString(marketGroupDetail);	
 		}
+		
 		return "{\"msg\":\"请求参数错误！\"}";
 	}
 }

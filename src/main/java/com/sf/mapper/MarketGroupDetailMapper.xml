@@ -21,7 +21,7 @@
 		
 		<result column="base_weight" property="baseWeight"/>
 		<result column="group_limit" property="groupLimit"/>
-		<result column="user_require" property="descriptionOfGroup"/>
+		<result column="use_require" property="descriptionOfGroup"/>
 		
 		<collection property="userIdList" ofType="java.lang.String">
 			<result column="user_id" />
@@ -43,7 +43,7 @@
 			pmb.base_price,
 			pmb.base_weight,
 			pmb.group_limit,
-			pmb.user_require,
+			pmb.use_require,
 			gu.user_id
 		FROM groupx gr
 		JOIN pro_market_base pmb ON gr.market_id = pmb.m_id
