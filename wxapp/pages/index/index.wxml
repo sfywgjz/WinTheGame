@@ -1,0 +1,88 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="head-title">
+    <!--<image class="title-linebg" src="../images/lineBg.png"></image>  -->
+    <text class="head-title-text">{{title}}</text>
+  </view>
+  <view class="grounp-weight-minAmount">
+    <view class="grounp-weight">{{weight}}</view>
+    <view class="grounp-minAmount">每日最低需寄<text class="orange-text">{{minAmount}}</text>件</view>
+  </view>
+  <view class="grounp-redcircle">
+    <image class="banner-images" src="../images/red-circle.png"></image>
+    <view class="price-up white-text">低至￥<text class="price-number">{{price}}</text></view>
+    <view class="price-down white-text">1.5kg</view>
+  </view>
+  <view class="head-banner">
+    <image class="banner-images" src="../images/banner.png"></image>
+  </view>
+  <View class="group-progress">
+    <view class="progress-bar">
+      <text class="progress-text">{{progress}}%</text>
+      <progress class="progress" percent="{{progress}}" color="#ff6532" stroke-width="20"/>
+    </view>
+    <view class="progress-lack">
+      <view class="progress-content">
+        还差<text class="orange-text">{{lackText}}</text>人即可成团
+      </view>
+    </view>
+  </View>
+  <view class="grounp-deadline">
+    <view class="deadline-time">截止日期：<text>{{deadline}}</text></view>
+  </view>
+  <view class="grounp-require">
+    <view class="require-header">
+      <view class="header-text">
+        <icon class="warn-icon" type="warn" size="18" color="#353535"/>
+        <text class="text-decs">使用要求</text>
+      </view>
+    </view>
+    <view class="require-body">
+      <view class="require-content">
+        <view class="require-rule">{{requireRule1}}</view>
+        <view class="require-rule">{{requireRule2}}</view>
+        <view class="require-rule">{{requireRule3}}</view>
+        <view class="require-rule">{{requireRule4}}</view>
+        <view class="require-rule">{{requireRule5}}</view>
+        <view class="require-rule">{{requireRule6}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="grounp-recently">
+    <view class="recently-header">
+      <view class="recently-text">
+        <view class="users-icon">
+          <image class="users-images" src="../images/users.png"></image>
+        </view>
+        <text class="text-decs">最近参与</text>
+      </view>
+    </view>
+    <view  class="recently-body">
+      <view class="rencently-users">
+        <block wx:for="{{userlist}}" wx:key="id">
+          <image class="user-image" src='{{item.src?item.src:"../images/user.png"}}'></image>
+        </block>
+      </view>
+      <!-- <view class="rencently-users">
+        <image class="user-image" src="../images/user.png"></image>
+        <image class="user-image" src="../images/user.png"></image>
+        <image class="user-image" src="../images/user.png"></image>
+      </view> -->
+
+      <view class="rencently-hasIn">
+        <view class="rencently-number">已有<text class="orange-text">{{rencentlyNumber}}</text>参团</view>
+      </view>
+    </view>
+  </view>
+  <view class="grounp-join-now">
+    <view class="btn-join-now">
+      <button class="join-btn" style='background-color:#ff6532;'  type="primary" bindtap='joinin'>立即参加</button> 
+    </view>
+    <view class="btn-right-wrap">
+      <button class="share-btn" style='background-color:#fff;' type="primary" bindtap='share'>
+        <image class="btn-icon-image" src="{{isAdd?'../images/more.png':'../images/share.png'}}"></image>
+      </button>
+    </view>
+  </view>
+</view>

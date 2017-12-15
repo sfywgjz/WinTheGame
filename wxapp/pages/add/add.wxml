@@ -1,0 +1,216 @@
+<!--mask-->  
+<view class="toast_mask" wx:if="{{isShowToast}}"></view>  
+<!--以下为toast显示的内容-->  
+<view class="toast_content_box" wx:if="{{isShowToast}}">  
+  <view class="toast_content">  
+    <view class="toast_content_text">  
+      {{toastText}}  
+    </view>  
+  </view>  
+</view>
+
+<!--mask-->  
+<view class="toast_success_mask" wx:if="{{isShowToastSuccess}}">
+   
+</view>  
+
+ 
+<!--以下为toast显示的内容-->  
+<view class="toast_success_content_box" wx:if="{{isShowToastSuccess}}">  
+  <view class="toast_success_content">  
+     <image src="../images/success.png" style="maigin-top:10px;margin-right: 5px;vertical-align: middle;width:100px; height: 100px;"></image>
+    
+    <view class="weui-cells__title"  style='color:#000;font-weight:bold;font-size:20px'> 
+      <strong>报名成功</strong> 
+    </view> 
+    <view class="weui-cells__title"  style='color:#000;font-size:20px'> 
+      转发推荐给更多朋友或生成图片分享至朋友圈，即可加快集货速度~
+    </view> 
+    <button class="weui-btn" style='background-color:#09bb07;'  type="primary" bindtap='sendFriend'>发送微信好友</button> 
+    <button class="weui-btn" style='background-color:#aaaaaa;'  type="primary" bindtap='shareFriendGroup'>分享到朋友圈</button> 
+  </view>  
+  <view style='position:absolute;bottom:20px;'>
+     <button class="btn" bindtap='closeSuccess' style='border:none;background-color:rgba(0,0,0,0)'>
+        <icon type="cancel" size="60"  color="rgba(255,255,255,0.7)"></icon>  
+    </button> 
+  </view>
+ 
+</view>
+
+
+<view class="dialog-mask " style="z-index:11;visibility:{{addressMenuIsShow ? 'visible': 'hidden'}}" bindtap="hideCitySelected" />
+  <view class="picker-view" animation="{{animationAddressMenu}}" style="visibility:{{addressMenuIsShow ? 'visible':'hidden'}}">
+ <view style="height:10% ;width:95%;margin-top:10rpx">
+  <text catchtap="cityCancel">取消</text>
+  <text style="float: right" catchtap="citySure">确定</text>
+ </view>
+ <picker-view style="width: 100%; height: 300px;" bindchange="cityChange" value="{{value}}" wx:key="">
+  <picker-view-column>
+   <view wx:for="{{provinces}}"  wx:key="" class="picker-item">
+    {{item.name}}</view>
+  </picker-view-column>
+  <picker-view-column>
+   <view wx:for="{{citys}}" class="picker-item" wx:key="">
+    {{item.name}}</view>
+  </picker-view-column>
+  <picker-view-column>
+   <view wx:for="{{areas}}" class="picker-item" wx:key="">
+    {{item.name}}</view>
+  </picker-view-column>
+ </picker-view>
+</view>
+
+<!--pages/add/add.wxml-->
+ 
+<view class="weui-cells__title" style='line-height:60px'>
+<image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;width:25px; height: 25px;"></image>
+寄件地址
+</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">所在地区</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" disabled focus="false" bindtap='selectDistrict' value='{{areaInfo}}' readonly placeholder="点击选择地址" />
+                    
+                </view>
+                 <block wx:if="{{!addressValidate}}" class="weui-cell_warn">
+                    <view class="weui-cell__ft weui-cell_warn">
+                        <icon type="warn" size="23" color="#E64340"></icon>
+                    </view>
+                  </block> 
+                  <block wx:if="{{addressValidate}}" class="weui-cell_warn">
+                    <view class="weui-cell__ft weui-cell_warn">
+                        <icon type='success_no_circle' size="23" color="#09bb07"></icon>
+                    </view>
+                  </block> 
+            </view>
+            <view class="weui-cell"> 
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea"  bindinput='setDetailAddress' placeholder="请输入详细地址" style="height: 3.3em" />
+                     <!-- <view class="weui-textarea-counter">0/200</view>  -->
+                </view>
+                <block wx:if="{{!detailAddressValidate}}" class="weui-cell_warn">
+                    <view class="weui-cell__ft weui-cell_warn">
+                        <icon type="warn" size="23" color="#E64340"></icon>
+                    </view>
+                  </block> 
+                  <block wx:if="{{detailAddressValidate}}" class="weui-cell_warn">
+                    <view class="weui-cell__ft weui-cell_warn">
+                        <icon type='success_no_circle' size="23" color="#09bb07"></icon>
+                    </view>
+                  </block> 
+            </view>
+          </view>
+
+ 
+
+
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cells__title" style='line-height:60px'>
+    <image src="{{iconMan}}" style="margin-right: 5px;vertical-align: middle;width:25px; height: 25px;"></image>
+    寄件人
+  </view>
+  <view class="weui-cell weui-cell_input">
+      
+      <view class="weui-cell__bd">
+          <input class="weui-input" bindinput="setName" placeholder="请填写寄件人姓名"/>
+      </view>
+
+      <block wx:if="{{!nameValidate}}" class="weui-cell_warn">
+        <view class="weui-cell__ft weui-cell_warn">
+            <icon type="warn" size="23" color="#E64340"></icon>
+        </view>
+      </block> 
+      <block wx:if="{{nameValidate}}" class="weui-cell_warn">
+        <view class="weui-cell__ft weui-cell_warn">
+            <icon type='success_no_circle' size="23" color="#09bb07"></icon>
+        </view>
+      </block> 
+
+  </view>
+  <view class="weui-cell weui-cell_input " >
+       
+      <view class="weui-cell__bd">
+          <input class="weui-input"  type='number'  bindinput="setPhone" placeholder="请填写寄件人电话" />
+      </view> 
+
+      <block wx:if="{{!phoneValidate}}" class="weui-cell_warn">
+        <view class="weui-cell__ft weui-cell_warn">
+            <icon type="warn" size="23" color="#E64340"></icon>
+        </view>
+      </block> 
+      <block wx:if="{{phoneValidate}}" class="weui-cell_warn">
+        <view class="weui-cell__ft weui-cell_warn">
+            <icon type='success_no_circle' size="23" color="#09bb07"></icon>
+        </view>
+      </block> 
+  </view> 
+</view>
+
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cells__title"  style='line-height:60px;color:#000;font-weight:bold;'>
+    <!-- <image src="{{iconMan}}" style="margin-right: 5px;vertical-align: middle;width:25px; height: 25px;"></image> -->
+    <strong>预估每日寄件量</strong>
+  </view> 
+</view>
+
+<view class="weui-cells weui-cells_after-title">
+  
+  <view class="weui-cell weui-cell_input">
+      
+      <view class="weui-cell__bd">
+          <input type='number' class="weui-input" bindinput="setMailNumber" placeholder="请填写寄件数量（至少20件）"/>
+      </view>
+
+      <block wx:if="{{!mailNumberValidate}}" class="weui-cell_warn">
+        <view class="weui-cell__ft weui-cell_warn">
+            <icon type="warn" size="23" color="#E64340"></icon>
+        </view>
+      </block> 
+      <block wx:if="{{mailNumberValidate}}" class="weui-cell_warn">
+        <view class="weui-cell__ft weui-cell_warn">
+            <icon type='success_no_circle' size="23" color="#09bb07"></icon>
+        </view>
+      </block> 
+
+  </view>
+   
+</view>
+<view class="weui-cells weui-cells_after-title">
+  
+  <view class="weui-cell  weui-cell_select">
+       
+      <view class="weui-cell__bd">
+        <picker bindchange="bindWeightChange" value="{{weightIndex}}"  range="{{weights}}" >
+            <view class="weui-select" style='border-style:none;border-right:0' placeholder="请选择单件平均重量">
+              <block wx:if="{{weightIndex==0}}" >
+                 <view  style="color:#777">请选择单件平均重量</view>
+              </block>
+              <block wx:if="{{weightIndex!=0}}"  >
+                {{weights[weightIndex]}}
+              </block>  
+            </view>
+        </picker>
+
+         
+      </view>
+      <block wx:if="{{!weightValidate}}"  class="weui-cell_warn">
+                  <view class="weui-cell__ft weui-cell_warn" style="position:relative; left:-15px; ">
+                      <icon type="warn" size="23" color="#E64340"></icon>
+                  </view>
+      </block> 
+      <block wx:if="{{weightValidate}}"  class="weui-cell_warn">
+                  <view class="weui-cell__ft weui-cell_warn" style="position:relative; left:-15px; ">
+                      <icon type='success_no_circle' size="23" color="#09bb07"></icon>
+                  </view>
+      </block> 
+
+      
+  </view>
+   
+</view>
+
+  <button class="weui-btn" style='background-color:#ff6532;border-radius:0px;'  type="primary" bindtap='baoming'>报名集货</button> 
+

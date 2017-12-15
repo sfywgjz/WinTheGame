@@ -1,5 +1,6 @@
 package com.sf.controller;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +19,16 @@ public class TestController {
 	
 	@Autowired
 	private TestService testService;
+
+	private org.slf4j.Logger LOGGER = LoggerFactory.getLogger(TestController.class);
 	
 	@RequestMapping("test.html")
 	public ModelAndView addApp(){
+
+		
 		TestObj testObj  = testMapper.getTestData();
-		System.out.println(testObj.getId());
-		System.out.println(testObj.getUserName());
-		System.out.println(testService.getServiceString());
+		LOGGER.info(testObj.getUserName());
+		LOGGER.info(testService.getServiceString());
 		return new ModelAndView("test");
 	}
 }

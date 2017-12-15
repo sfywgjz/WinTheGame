@@ -1,0 +1,5 @@
+<!--pages/qrcode/qrcode.wxml-->
+<!-- <text>pages/qrcode/qrcode.wxml</text> -->
+
+
+<image src="../images/qrcode.png" style="maigin-top:10px;margin-right: 5px;vertical-align: middle;width:400px; height: 400px;"></image>

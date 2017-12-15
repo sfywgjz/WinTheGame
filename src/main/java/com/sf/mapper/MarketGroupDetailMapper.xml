@@ -47,4 +47,31 @@
 		JOIN group_user gu ON gr.id = gu.group_id
 		WHERE gr.id = #{groupId}  
     </select>
+    <update id="updateEndingMarket" parameterType="com.sf.entity.GroupxModel">
+    	UPDATE groupx a SET a.status=2, a.real_etm=CURRENT_TIMESTAMP WHERE a.status!=2 AND a.etm &lt; CURRENT_TIMESTAMP;
+    </update>
+    
+    <insert id="newMarket">
+	    INSERT INTO `groupx` (`market_id`,`gname`,`btm`,`etm`,`status`)
+		SELECT a.`market_id`,CONCAT(a.gname,a.dateSeri,a.flowId),
+			a.`btm`,a.etm,a.status
+		FROM (
+			SELECT a.`m_id` AS `market_id`,
+			a.`m_name` AS `gname`,
+			DATE_FORMAT(CURRENT_TIMESTAMP, '%m%d') AS dateSeri,
+			(
+				SELECT LPAD(COUNT(*)+1,3,0) FROM groupx xx WHERE 1=1 
+					AND xx.btm &gt;=CONCAT(DATE_FORMAT(CURRENT_TIMESTAMP, '%Y-%m-%d'),' 00:00:00')
+					AND xx.btm &lt; CONCAT(DATE_FORMAT(DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 DAY), '%Y-%m-%d'),' 00:00:00')
+					AND xx.`market_id`= a.`m_id`
+			) AS flowId
+			,CURRENT_TIMESTAMP AS `btm`
+			,DATE_ADD(CURRENT_TIMESTAMP, INTERVAL a.group_duration MINUTE) AS `etm`,1 AS `status`
+			FROM pro_market_base a LEFT JOIN (
+				SELECT * FROM groupx b 
+				WHERE b.`status`!=2
+			) b ON a.`m_id`=b.`market_id`
+			 WHERE (b.`etm` &lt; CURRENT_TIMESTAMP OR b.`market_id` IS NULL)
+		) a
+    </insert>
 </mapper>
