@@ -212,5 +212,5 @@
    
 </view>
 
-  <button class="weui-btn" style='background-color:#ff6532;'  type="primary" bindtap='baoming'>报名集货</button> 
+  <button class="weui-btn" style='background-color:#ff6532;border-radius:0px;'  type="primary" bindtap='baoming'>报名集货</button> 
 

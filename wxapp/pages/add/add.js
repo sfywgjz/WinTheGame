@@ -203,11 +203,11 @@ Page({
   },
   // 执行动画
   startAddressAnimation: function (isShow) {
-    console.log(isShow)
+    // console.log(isShow)
     var that = this
     if (isShow) {
       // vh是用来表示尺寸的单位，高度全屏是100vh
-      console.log(that.animation)
+      // console.log(that.animation)
       that.animation.translateY(0 + 'vh').step()
     } else {
       that.animation.translateY(60 + 'vh').step()
@@ -237,12 +237,12 @@ Page({
   },
   // 点击蒙版时取消组件的显示
   hideCitySelected: function (e) {
-    console.log(e)
+    // console.log(e)
     this.startAddressAnimation(false)
   },
   // 处理省市县联动逻辑
   cityChange: function (e) {
-    console.log(e)
+    // console.log(e)
     var value = e.detail.value
     var provinces = this.data.provinces
     var citys = this.data.citys
@@ -271,7 +271,7 @@ Page({
         value: [provinceNum, cityNum, countyNum]
       })
     }
-    console.log(this.data)
+    // console.log(this.data)
   },
 
 
@@ -299,8 +299,11 @@ Page({
     })
   },
   closeSuccess:function(e){
-    console.log("close!")
+    // console.log("close!")
     this.showSuccessToast(false)
+    wx.navigateTo({
+      url: '../index/index?groupId=' + this.data.groupId
+    })
   }
 
 })

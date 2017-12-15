@@ -21,13 +21,7 @@ Page({
       method: "POST", 
       data: { page: "pages/index/index", key: "1430ec127e097e1113259c5e1be1ba70" },
       complete: function (res) {
-        that.setData({
-          toastHidden: false,
-          toastText: res.data.reason,
-          city_name: res.data.result.data.realtime.city_name,
-          date: res.data.result.data.realtime.date,
-          info: res.data.result.data.realtime.weather.info,
-        });
+         
         if (res == null || res.data == null) {
           console.error('网络请求失败');
           return;

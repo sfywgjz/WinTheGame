@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "example/navbar/navbar",
     "example/index",
     "example/button/button",
@@ -28,15 +29,14 @@
     "example/tabbar/tabbar",
     "example/searchbar/searchbar",
     "pages/add/add",
-    "pages/index/index",
     "pages/success/success",
     "pages/qrcode/qrcode"
   ],
   "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "WeUI for 小程序",
-    "navigationBarBackgroundColor": "#f8f8f8",
-    "backgroundColor": "#f8f8f8"
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "集货助手",
+    "navigationBarBackgroundColor": "#ff6532",
+    "backgroundColor": "#fff"
   },
   "networkTimeout": {
     "request": 10000,
