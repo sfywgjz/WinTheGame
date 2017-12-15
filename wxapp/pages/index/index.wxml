@@ -3,6 +3,7 @@
   <view class="head-title">
     <!--<image class="title-linebg" src="../images/lineBg.png"></image>  -->
     <text class="head-title-text">{{title}}</text>
+    <view class='head-line'></view>
   </view>
   <view class="grounp-weight-minAmount">
     <view class="grounp-weight">{{weight}}</view>
@@ -39,12 +40,12 @@
     </view>
     <view class="require-body">
       <view class="require-content">
-        <view class="require-rule">{{requireRule1}}</view>
-        <view class="require-rule">{{requireRule2}}</view>
+        <text class="require-rule">{{requireRule1}}</text>
+        <!-- <view class="require-rule">{{requireRule2}}</view>
         <view class="require-rule">{{requireRule3}}</view>
         <view class="require-rule">{{requireRule4}}</view>
         <view class="require-rule">{{requireRule5}}</view>
-        <view class="require-rule">{{requireRule6}}</view>
+        <view class="require-rule">{{requireRule6}}</view> -->
       </view>
     </view>
   </view>

@@ -17,7 +17,7 @@ Page({
     phoneValidate:false,
     mailNumber:0,
     mailNumberValidate: false, 
-    groudId:0,
+    groupId:0,
 
     //toast默认不显示  
     isShowToast: false, 
@@ -57,7 +57,7 @@ Page({
     
     // 保存参数
     this.setData({
-      groudId: option.groudId 
+      groupId: option.groupId 
     });
   },
   /**
@@ -177,8 +177,10 @@ Page({
 
     //参团  https://s1.dforel.site/sf-application/getMarketGroupDetailByGroupId.html?groupId=
     wx.request({
-      url: "https://s1.dforel.site/sf-application/getMarketGroupDetailByGroupId.html?groupId=" + this.data.groudId,
-      data: { name: this.data.name, phone: this.data.phone, groudId: this.data.groudId, 
+      url: "https://s1.dforel.site/sf-application/joinGroup.html" ,
+      method: "POST",  
+      data: {
+        name: this.data.name, phone: this.data.phone, groupId: this.data.groupId, 
               mailNumber: this.data.mailNumber, areaInfo: this.data.areaInfo, 
               detailAddress: this.data.detailAddress, weights: this.data.weights},
       success: function (res) {
