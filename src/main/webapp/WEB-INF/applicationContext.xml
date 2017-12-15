@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:jaxws="http://cxf.apache.org/jaxws"
+	   xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/websocket
+        http://www.springframework.org/schema/websocket/spring-websocket.xsd
+        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<context:component-scan base-package="com.sf.controller" />
+	<context:component-scan base-package="com.sf.service.impl" />
+	<context:component-scan base-package="com.sf.mapper" />
+	
+<mvc:annotation-driven />
+
+	<!-- spring mvc view resolver configuration -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/pages/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<property name="contentType">
+			<value>text/html;charset=UTF-8</value>
+		</property>
+		<property name="order">
+			<value>0</value>
+		</property>
+	</bean>
+	
+	<!-- spring mvc custom configuration config -->
+	<bean id="configurationsLoader"
+		class="com.sf.config.PropertyPlaceholderConfigLoader">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<!-- The default location of environment.properties is: ${TOMCAT_HOME}\appconfig -->
+			<list>
+				<value>/WEB-INF/sys.admin.properties</value>
+				<!-- value>file:/usr/tomcat/apache-tomcat-7.0.53/appconfig/sys.properties</value> -->
+			</list>
+		</property>
+	</bean>
+
+	<import resource="/applicationContext-tx.xml" />
+</beans>

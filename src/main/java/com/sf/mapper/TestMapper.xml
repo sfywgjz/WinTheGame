@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sf.mapper.TestMapper">
+
+    <resultMap id="testMapper" type="com.sf.entity.TestObj">
+        <result column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        
+        
+    </resultMap>
+    <select id="getTestData" resultMap="testMapper">
+        
+	SELECT id, user_name FROM test 
+    </select>
+</mapper>
